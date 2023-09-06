@@ -1,0 +1,5 @@
+1. Création du projet
+  -> composer create-project laravel/laravel --prefer-dist flutter_laravel_api
+  
+2. Installer 
+  -> composer req laravel/sanctum
