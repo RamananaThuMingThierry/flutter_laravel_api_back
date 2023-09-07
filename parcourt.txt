@@ -3,3 +3,7 @@
   
 2. Installer 
   -> composer req laravel/sanctum
+
+  3. -> php artisan storage:link
+
+ 

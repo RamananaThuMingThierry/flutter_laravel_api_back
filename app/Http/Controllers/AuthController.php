@@ -33,11 +33,10 @@ class AuthController extends Controller
             $token = $user->createToken($user->email.'_Token')->plainTextToken;
 
             return response()->json([
-                'status' => 200,
                 'name' => $user->name,
                 'token' => $token,
                 'message' => 'Inscription avec succès!',
-            ]);
+            ], 200);
         }
     }
 
@@ -58,17 +57,15 @@ class AuthController extends Controller
 
             if(!$user || !Hash::check($request->password, $user->password)){
                 return response()->json([
-                    'status' => 401,
                     'message' => 'Invalids Credentials',
-                ]);
+                ], 403);
             }else{
                 $token = $user->createToken($user->email.'_Token')->plainTextToken;
                 return response()->json([
-                    'status' => 200,
                     'name' => $user->name,
                     'token' => $token,
                     'message' => 'Connexion avec succès!'
-                ]);
+                ], 200);
             }
         }
     }
@@ -80,6 +77,25 @@ class AuthController extends Controller
             'status' => 200,
             'message' => "Déconnexion effectuée!",
         ]);
+    }
+
+    // Update User
+    public function update(Request $request){
+        $attrs = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $image = $this->saveImage($request->image, 'profiles');
+
+        auth()->user()->update([
+            'name' => $attrs['name'],
+            'image' => $image
+        ]);
+
+        return response()->json([
+            'message' => 'User updated',
+            'user' => auth()->user(),
+        ], 200);
     }
 
     // Get user details
