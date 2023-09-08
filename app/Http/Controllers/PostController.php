@@ -27,7 +27,7 @@ class PostController extends Controller
     public function show($id){
         $post = Post::where('id', $id)->withCount('commentaires','likes')->get();
         return response()->json([
-            'post' => $post
+            'posts' => $post
         ], 200);
     }
 
