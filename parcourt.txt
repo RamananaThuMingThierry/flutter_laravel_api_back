@@ -5,5 +5,6 @@
   -> composer req laravel/sanctum
 
   3. -> php artisan storage:link
-
  
+ 4. Changer de host et port
+ -> php artisan serve --host ip_phone_connecte_aminaz_io --port 8000

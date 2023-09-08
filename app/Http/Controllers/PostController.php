@@ -19,8 +19,9 @@ class PostController extends Controller
         })
         ->get();
         return response()->json([
-            'posts' => $posts
-        ], 200);
+            'posts' => $posts,
+            'status' => 200
+        ]);
     }
 
     // Get single post
@@ -51,8 +52,9 @@ class PostController extends Controller
 
         return response()->json([
             'message' => 'Post Created.',
-            'post' => $post
-        ], 200);
+            'post' => $post,
+            'status' => 200
+        ]);
     }
 
      // Update a post

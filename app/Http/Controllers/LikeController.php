@@ -14,8 +14,9 @@ class LikeController extends Controller
 
         if(!$post){
             return response()->json([
-                'message' => 'Post not found.'
-            ], 403);
+                'message' => 'Post not found.',
+                'status' => 403
+            ]);
         }
 
         $like = $post->likes()->where('user_id', auth()->user()->id)->first();
@@ -28,14 +29,16 @@ class LikeController extends Controller
             ]);
 
             return response()->json([
-                'message' => 'Liked'
-            ], 200);
+                'message' => 'Liked',
+                'status' => 200
+            ]);
         }
 
         $like->delete();
 
         return response()->json([
-            'message' => 'Disliked'
-        ], 200);
+            'message' => 'Disliked',
+            'status' => 200
+        ]);
     }
 }

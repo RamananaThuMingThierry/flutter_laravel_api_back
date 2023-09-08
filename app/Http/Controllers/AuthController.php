@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
-{
-    
+{  
     // Register user
     public function register(Request $request){  
         $validator = Validator::make($request->all(), [
@@ -96,6 +95,13 @@ class AuthController extends Controller
             'message' => 'User updated',
             'user' => auth()->user(),
         ], 200);
+    }
+
+    public function getUser()
+    {
+        return response()->json([
+            'userId' => auth()->user()->id
+        ]);
     }
 
     // Get user details
